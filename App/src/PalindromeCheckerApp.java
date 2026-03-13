@@ -5,32 +5,52 @@ import java.util.Stack;
 public class PalindromeCheckerApp {
 
     /*
-    UC10
+    UC12
      */
 
 
 
 
     public static void main(String[] args) {
-        String input = "A man a plan a canal Panama";
+        String input = "level";
 
-        // 1. Normalization: Remove non-alphanumeric characters and lowercase everything
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        // Use the Stack-based strategy
+        PalindromeStrategy strategy = new StackStrategy();
+        boolean isPalindrome = strategy.check(input);
 
-        boolean isPalindrome = true;
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
+    }
+}
 
-        // 2. Palindrome Logic (based on your hint)
-        for (int i = 0; i < normalized.length() / 2; i++) {
+/**
+ * Interface for Palindrome Validation Strategies.
+ */
+interface PalindromeStrategy {
+    boolean check(String input);
+}
 
-            // Compare symmetric characters
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
+
+class StackStrategy implements PalindromeStrategy {
+
+    @Override
+    public boolean check(String input) {
+        // Create a stack to store characters
+        Stack<Character> stack = new Stack<>();
+
+        // Push each character of the input string onto the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        // Compare characters by popping from the stack
+        for (char c : input.toCharArray()) {
+            // If the current character doesn't match the popped character, it's not a palindrome
+            if (c != stack.pop()) {
+                return false;
             }
         }
 
-        // 3. Output results
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        return true;
     }
 }
