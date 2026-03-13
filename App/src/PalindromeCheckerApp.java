@@ -1,56 +1,36 @@
-/**
- * MAIN CLASS: UseCase11PalindromeCheckerApp
- * Use Case 11: Object-Oriented Palindrome Service
- *
- * Description:
- * This class demonstrates object-oriented design.
- * The palindrome logic is encapsulated inside
- * a separate service class.
- *
- * This proves:
- *  - Reusability
- *  - Encapsulation
- *  - Clean architecture design
- *
- * @author Arnav Siddhaye
- * @version 11.0
- */
-
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Stack;
 public class PalindromeCheckerApp {
+
+    /*
+    UC10
+     */
+
+
+
+
     public static void main(String[] args) {
+        String input = "A man a plan a canal Panama";
 
-        String input = "racecar";
-        System.out.println("Input: " + input);
-        PalindromeService service = new PalindromeService();
+        // 1. Normalization: Remove non-alphanumeric characters and lowercase everything
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        boolean result = service.checkPalindrome(input);
+        boolean isPalindrome = true;
 
-        System.out.println("Is Palindrome?: " + result);
-    }
-}
-class PalindromeService {
+        // 2. Palindrome Logic (based on your hint)
+        for (int i = 0; i < normalized.length() / 2; i++) {
 
-    public boolean checkPalindrome(String input) {
-
-        if (input == null) {
-            return false;
-        }
-
-
-        int start = 0;
-        int end = input.length() - 1;
-
-
-        while (start < end) {
-
-            if (input.charAt(start) != input.charAt(end)) {
-                return false;
+            // Compare symmetric characters
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
             }
-
-            start++;
-            end--;
         }
 
-        return true;
+        // 3. Output results
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
