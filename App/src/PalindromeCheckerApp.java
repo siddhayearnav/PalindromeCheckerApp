@@ -4,19 +4,20 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a word: ");
-        String str = sc.nextLine();
+        System.out.print("Enter a string: ");
+        String original = sc.nextLine();
 
-        String rev = "";
+        String reversed = "";
 
-        for (int i = str.length() - 1; i >= 0; i--) {
-            rev = rev + str.charAt(i);
+
+        for (int i = original.length() - 1; i >= 0; i--) {
+            reversed = reversed + original.charAt(i);
         }
 
-        if (str.equals(rev)) {
-            System.out.println("Palindrome");
+        if (original.equals(reversed)) {
+            System.out.println("The string is a Palindrome.");
         } else {
-            System.out.println("Not Palindrome");
+            System.out.println("The string is NOT a Palindrome.");
         }
 
         sc.close();
