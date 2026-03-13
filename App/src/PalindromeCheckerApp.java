@@ -1,62 +1,56 @@
 /**
- * MAIN CLASS: UseCase9PalindromeCheckerApp
- * Use Case 9: Recursive Palindrome Checker
+ * MAIN CLASS: UseCase11PalindromeCheckerApp
+ * Use Case 11: Object-Oriented Palindrome Service
  *
  * Description:
- * This class validates a palindrome using recursion.
- * Characters are compared from the outer positions
- * moving inward using recursive calls.
+ * This class demonstrates object-oriented design.
+ * The palindrome logic is encapsulated inside
+ * a separate service class.
  *
- * The recursion stops when:
- *  - All characters are matched (base condition met), or
- *  - A mismatch is found.
- *
- * This use case demonstrates divide-and-conquer
- * logic using method recursion.
+ * This proves:
+ *  - Reusability
+ *  - Encapsulation
+ *  - Clean architecture design
  *
  * @author Arnav Siddhaye
- * @version 9.0
+ * @version 11.0
  */
 
 public class PalindromeCheckerApp {
-
-    /**
-     * Application entry point for UC9.
-     * @param args Command Line arguments
-     */
     public static void main(String[] args) {
 
-
-        String input = "madan";
-
+        String input = "racecar";
         System.out.println("Input: " + input);
+        PalindromeService service = new PalindromeService();
 
-        boolean isPalindrome = check(input, 0, input.length() - 1);
+        boolean result = service.checkPalindrome(input);
 
-        System.out.println("Is Palindrome? " + isPalindrome);
+        System.out.println("Is Palindrome?: " + result);
     }
+}
+class PalindromeService {
 
-    /**
-     * Recursively checks whether a string is a palindrome.
-     *
-     * @param s     Input string
-     * @param start Starting index
-     * @param end   Ending index
-     * @return true if palindrome, otherwise false
-     */
-    private static boolean check(String s, int start, int end) {
+    public boolean checkPalindrome(String input) {
 
-
-        if (start >= end) {
-            return true;
-        }
-
-
-        if (s.charAt(start) != s.charAt(end)) {
+        if (input == null) {
             return false;
         }
 
 
-        return check(s, start + 1, end - 1);
+        int start = 0;
+        int end = input.length() - 1;
+
+
+        while (start < end) {
+
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+
+            start++;
+            end--;
+        }
+
+        return true;
     }
 }
