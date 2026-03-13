@@ -1,59 +1,54 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.LinkedList;
 
 /**
- * MAIN CLASS: UseCase7PalindromeCheckerApp
- * Use Case 7: Deque Based Optimized Palindrome Checker
+ * MAIN CLASS: UseCase8PalindromeCheckerApp
+ * Use Case 8: Linked List Based Palindrome Checker
  *
  * Description:
- * This class validates a palindrome using a Deque (Double Ended Queue).
- * Characters are inserted into the deque and then compared by removing
- * elements from both ends using:
+ * This class checks whether a string is a palindrome
+ * using a LinkedList.
+ * Characters are added to the list and then compared
+ * by removing elements from both ends:
  *    - removeFirst()
  *    - removeLast()
  *
- * This avoids reversing the string and provides an efficient
- * front-to-back comparison approach.
+ * This demonstrates how LinkedList supports
+ * double-ended operations for symmetric validation.
  *
  * @author Arnav Siddhaye
- * @version 7.0
+ * @version 8.0
  */
 
-public class PalindromeCheckerApp {
+public class PalindromeCheckerApp{
 
-    /**
-     * Application entry point for UC7.
-     * @param args Command-line arguments
-     */
     public static void main(String[] args) {
 
+        String input = "level";
 
-        String input = "refer";
         System.out.println("Input: " + input);
 
 
-        Deque<Character> deque = new ArrayDeque<>();
-
+        LinkedList<Character> list = new LinkedList<>();
 
         for (char c : input.toCharArray()) {
-            deque.addLast(c);
+            list.add(c);
         }
-
 
         boolean isPalindrome = true;
 
 
-        while (deque.size() > 1) {
+        while (list.size() > 1) {
 
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
+            char first = list.removeFirst();
+            char last = list.removeLast();
 
-            if (front != rear) {
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
         }
 
+        // Display result
         System.out.println("Is Palindrome?: " + isPalindrome);
     }
 }
